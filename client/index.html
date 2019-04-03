@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hacktiv-Git</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
+  <!-- custom css -->
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/home.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/navbar.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./stylesheets/dashboard.css">
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="./stylesheet/utilities.css"> -->
+
+  <!-- jquery -->
+  <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+  </script>
+
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- sweetalert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-menu">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand page-connect" data-page="home" href="#">Hacktiv-GIT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item page-connect" data-page="home">
+                    <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item onDashboard page-connect" data-page="dashboard">
+                    <a id="dashboard" class="nav-link dashboard-button" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item page-connect">
+                    <a id="logout" class="nav-link logout-button" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ========================================================================== -->
+    <div class="page home">
+        <div class="main-title">
+            <div>
+                <h1>Welcome to Hacktiv-GIT</h1>
+            </div>
+            <div>
+                <p>Personal Git App for Hacktiv8 Students</p>
+            </div>
+            <div class="github-login-button">
+                <a href="https://github.com/login/oauth/authorize?client_id=d20af1479ae644df15ea&scope=user%20repo" id="github-login"><img src="./assets/github-login.png" alt=""></a>
+            </div>
+            <div>
+                <button class="btn btn-primary page-connect dashboard-button" id="dashboard" data-page="dashboard">Dashboard</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================== -->
+    <div class="page dashboard">
+        <div class="dashboard-options">
+            <div class="dashboard-title">
+                <h5>Tasks</h5>
+            </div>
+            <div class="dashboard-select">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputSelect" onchange="dashboardMenu(this)">
+                        
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputSelect">Options</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-dashboard repo-list">
+            <div class="addnew">
+                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-todo" value="New Repository" name="submit-login" id="submit-login">
+            </div>
+            <div class="list-repo-empty">
+                <div>
+                    <h5>You do not select any repositories yet. Please select your repository first!!</h5>
+                </div>
+                <div>
+                    <img src="./assets/rocket.png" alt="rocket">
+                </div>
+            </div>
+            <div class="limiter table-repo">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+                        <div class="table100 ver2 m-b-110">
+                            <table data-vertable="ver2">
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th class="column100 column1" data-column="column1">Name</th>
+                                        <th class="column100 column2" data-column="column2">Type</th>
+                                        <th class="column100 column3" data-column="column3">Size</th>
+                                        <th class="column100 column4" data-column="column4">Visit Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body-listrepo">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <!-- bootstrap js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <!-- custom script -->
+  <script src="./js/main.js"></script>
+  <script src="./js/navigation.js"></script>
+</body>
+</html>
