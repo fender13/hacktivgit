@@ -131,3 +131,27 @@ th, td {
   margin-top: 4%;
   width: 10%;
 }
+
+.menu-table {
+  justify-content: right;
+}
+
+.menu-button {
+  margin-left: 1%;
+}
+
+.search-form-repo {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.search-result {
+  margin-top: 5%;
+  text-align: center; 
+}
+
+.search-result img {
+  margin-top: 4%;
+  width: 10%;
+}

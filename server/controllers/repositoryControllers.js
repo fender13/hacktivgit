@@ -14,7 +14,9 @@ class RepositoryController {
         res.status(200).json(data)
       })
       .catch(({ response }) => {
-        console.log(response)
+        res.status(500).json({
+          error: response
+        })
       })
   }
 
@@ -25,8 +27,55 @@ class RepositoryController {
         res.status(200).json(data)
       })
       .catch(({ response }) => {
-        console.log(response)
+        res.status(500).json({
+          error: response
+        })
       })
+  }
+
+  static createRepository(req, res) {
+    axi
+      .post(`/user/repos?${req.headers.token}`, {
+        name: req.body.name,
+        description: req.body.description,
+        private: Boolean(req.body.status),
+        auto_init: Boolean('true')
+      })
+      .then(({ data }) => {
+        res.status(201).json(data)
+      })
+      .catch(({ response }) => {
+        res.status(500).json({
+          error: response
+        })
+      })
+  }
+
+  static deleteRepository(req, res) {
+    axi
+      .delete(`/repos/${req.params.owner}/${req.params.repo}?${req.headers.token}`)
+      .then(({ data }) => {
+        res.status(200).json(data)
+      })
+      .catch(({ response }) => {
+        res.status(500).json({
+          error: response
+        })
+      })
+  }
+
+  static searchUserRepository(req, res) {
+    const username = req.params.owner
+      axi
+        .get(`/users/${username}/repos?${req.headers.token}`)
+        .then(({ data }) => {
+          res.status(200).json(data)
+        })
+        .catch((e) => {
+          res.status(200).json({
+            error: e.message
+          })
+        })
   }
 }
 

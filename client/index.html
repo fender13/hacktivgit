@@ -49,8 +49,8 @@
                 <li class="nav-item onDashboard page-connect" data-page="dashboard">
                     <a id="dashboard" class="nav-link dashboard-button" href="#">Dashboard</a>
                 </li>
-                <li class="nav-item page-connect">
-                    <a id="logout" class="nav-link logout-button" href="#">Logout</a>
+                <li class="nav-item page-connect" data-page="home">
+                    <a id="logout-button" class="nav-link logout-button" href="#">Logout</a>
                 </li>
             </ul>
         </div>
@@ -67,7 +67,7 @@
                 <p>Personal Git App for Hacktiv8 Students</p>
             </div>
             <div class="github-login-button">
-                <a href="https://github.com/login/oauth/authorize?client_id=d20af1479ae644df15ea&scope=user%20repo" id="github-login"><img src="./assets/github-login.png" alt=""></a>
+                <a id="github-button" href="https://github.com/login/oauth/authorize?client_id=d20af1479ae644df15ea&scope=user%20repo%20delete_repo" id="github-login"><img src="./assets/github-login.png" alt=""></a>
             </div>
             <div>
                 <button class="btn btn-primary page-connect dashboard-button" id="dashboard" data-page="dashboard">Dashboard</button>
@@ -82,7 +82,9 @@
             <div class="dashboard-title">
                 <h5>Tasks</h5>
             </div>
+
             <div class="dashboard-select">
+                
                 <div class="input-group mb-3">
                     <select class="custom-select" id="inputSelect" onchange="dashboardMenu(this)">
                         
@@ -95,8 +97,16 @@
         </div>
 
         <div class="main-dashboard repo-list">
-            <div class="addnew">
-                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#form-todo" value="New Repository" name="submit-login" id="submit-login">
+            <div class="row menu-table">
+                <div class="addnew menu-button">
+                    <input type="button" class="btn btn-primary" id="search-github-user" value="Search Repository">
+                </div>
+                <div class="addnew menu-button">
+                    <input type="button" class="btn btn-primary " data-toggle="modal" data-target="#create-repo" value="New Repository">
+                </div>
+                <div class="addnew menu-button">
+                    <input type="button" class="btn btn-primary" id="delete-repo-button" value="Delete Repository">
+                </div>
             </div>
             <div class="list-repo-empty">
                 <div>
@@ -124,6 +134,83 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="search-form-repo">
+                <form id="search-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search-by-user" placeholder="Search github repository">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                    
+                </div>
+            </div>
+            <div class="limiter table-searched-repo">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+                        <div class="table100 ver2 m-b-110">
+                            <table data-vertable="ver2">
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th class="column100 column1" data-column="column1">Repo Name</th>
+                                        <th class="column100 column4" data-column="column4">Visit Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body-search-reponame">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-result">
+                <div>
+                    <h5>Repo Not Found. Please search again!!</h5>
+                </div>
+                <div>
+                    <img src="./assets/rocket.png" alt="rocket">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================== -->
+    <div class="modal fade" id="create-repo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Repository</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Repository Name:</label>
+                            <input class="form-control" id="input-repo-name" type="text" placeholder="Enter Repository Name Here">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Description:</label>
+                            <input class="form-control date-form" id="input-description" type="text" placeholder="Enter Description Here">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Private:</label>
+                            <select class="custom-select" id="input-status-private">
+                                <option value="false" selected>False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-primary" id="new-repository" value="Create New">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
